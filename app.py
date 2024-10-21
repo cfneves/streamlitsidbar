@@ -1,6 +1,8 @@
 import streamlit as st
 from langchain_community.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
+from langchain_openai import ChatOpenAI
+
 import os
 import yaml
 import matplotlib.pyplot as plt  # Biblioteca para gráficos
