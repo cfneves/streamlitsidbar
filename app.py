@@ -2,16 +2,16 @@ import streamlit as st
 from langchain_community.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
-
 import os
-import yaml
 import matplotlib.pyplot as plt  # Biblioteca para gráficos
 import numpy as np
 
-# Carregar a chave da API do arquivo config.yaml
-with open('config.yaml', 'r') as config_file:
-    config = yaml.safe_load(config_file)
-os.environ['OPENAI_API_KEY'] = config['OPENAI_API_KEY']
+# Carregar a chave da API a partir das variáveis de ambiente
+api_key = os.getenv('OPENAI_API_KEY')
+
+if not api_key:
+    st.error("A chave API não foi encontrada. Verifique as configurações de variáveis de ambiente.")
+    st.stop()
 
 # Inicializar o modelo ChatOpenAI
 openai = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0)
